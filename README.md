@@ -4,10 +4,54 @@
 
 ## 最小 IAM Policy 配置
 
-* AmazonKinesisFirehoseFullAccess
+
 * AmazonLexFullAccess
-* AmazonS3FullAccess
 * AWSLambda_FullAccess
+* qnabot-firehose-policy
+
+  ```
+  {
+      "Version": "2012-10-17",
+      "Statement": [
+          {
+              "Sid": "VisualEditor0",
+              "Effect": "Allow",
+              "Action": "firehose:ListDeliveryStreams",
+              "Resource": "*"
+          },
+          {
+              "Sid": "VisualEditor1",
+              "Effect": "Allow",
+              "Action": "firehose:*",
+              "Resource": "arn:aws:firehose:*:217553593248:deliverystream/QnABot*"
+          }
+      ]
+  }
+  ```
+
+* qnabot-s3-policy
+
+  ```
+  {
+      "Version": "2012-10-17",
+      "Statement": [
+          {
+              "Effect": "Allow",
+              "Action": [
+                  "s3:*",
+                  "s3-object-lambda:*"
+              ],
+              "Resource": [
+                  "arn:aws:s3:::qnabot*/*",
+                  "arn:aws:s3:::qnabot*",
+                  "arn:aws:s3:::solutions-ap-southeast-1/*",
+                  "arn:aws:s3:::solutions-ap-southeast-1"
+              ]
+          }
+      ]
+  }
+  ```
+
 * qnabot-ai-policy
 
   ```
