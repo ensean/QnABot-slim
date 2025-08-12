@@ -506,8 +506,8 @@
               ],
               "Resource": [
                   "arn:aws:iam::*:role/QnABot*",
+                  "arn:aws:iam::*:role/aws-service-role/*",
                   "arn:aws:iam::*:role/stacksets-exec*",
-                  "arn:aws:iam::*:role/cfn-qnabot",
                   "arn:aws:iam::*:policy/QnABot*"
               ]
           }
