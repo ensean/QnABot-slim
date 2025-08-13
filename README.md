@@ -500,7 +500,6 @@
                   "iam:GetRole",
                   "iam:GetServiceLinkedRoleDeletionStatus",
                   "iam:ListPolicyVersions",
-                  "iam:PassRole",
                   "iam:PutRolePolicy",
                   "iam:UpdateRole"
               ],
@@ -510,6 +509,35 @@
                   "arn:aws:iam::*:role/stacksets-exec*",
                   "arn:aws:iam::*:policy/QnABot*"
               ]
+          },
+          {
+              "Effect": "Allow",
+              "Action": [
+                  "iam:PassRole"
+              ],
+              "Resource": [
+                  "arn:aws:iam::*:role/QnABot*",
+                  "arn:aws:iam::*:role/aws-service-role/*",
+                  "arn:aws:iam::*:role/stacksets-exec*"
+              ],
+              "Condition": {
+                  "StringLike": {
+                      "iam:PassedToService": [
+                          "cognito-identity.amazonaws.com",
+                          "lex.amazonaws.com",
+                          "lexv2.amazonaws.com",
+                          "channels.lex.amazonaws.com",
+                          "channels.lexv2.amazonaws.com",
+                          "cloudformation.amazonaws.com",
+                          "opensearchservice.amazonaws.com",
+                          "es.amazonaws.com",
+                          "lambda.amazonaws.com",
+                          "kendra.amazonaws.com",
+                          "firehose.amazonaws.com",
+                          "apigateway.amazonaws.com"
+                      ]
+                  }
+              }
           }
       ]
   }
